@@ -38,9 +38,17 @@
                 <span class="pull-right">Total: 1 itens</span>
             </div>
             <div class="col-md-2">
-                <span class="pull-right">R$ 200,00</span>
+                <span class="pull-right">R$ 210,00</span>
             </div>
         </div>
     </div>
+        <div class="row">
+            <div class="col-md-12">
+                @*@Html.ActionLink("Finalizar Pedido", "resumo", "Pedido",null, new { @class = "btn btn-success pull-right" })*@
+                <a asp-controller="pedido"
+                   asp-action="resumo"
+                   class="btn btn-success pull-right">Finalizar Pedido</a>
+            </div>
+        </div>
 </div>
 

@@ -45,4 +45,6 @@
 .right.carousel-control,
 .left.carousel-control{
     background-image:none;
+    margin-top:100px;
+    margin-bottom:100px;
 }
