@@ -1,7 +1,53 @@
 ﻿
 @{
-    ViewData["Title"] = "resumo";
+    ViewData["Title"] = "Resumo";
 }
 
-<h2>resumo</h2>
+<h2>Resumo</h2>
+
+<div class="panel panel-default">
+    <div class="panel-body">
+        @*PRIMEIRA LINHA*@
+        <div class="row">
+            <div class="col-md-12">
+                <h3>Nº do Pedido: 12345678</h3>
+            </div>
+        </div>
+        <hr />
+        @*SEGUNDA LINHA*@
+        <div class="row">
+            <div class="col-md-3">
+                <h3>Seus dados</h3>
+                <div>João da Silva</div>
+                <div>(11) 1234-5678</div>
+            </div>
+            <div class="col-md-3">
+                <div>
+                    joao@alura.com.br
+                </div>
+                <h3>Endereço de Entrega</h3>
+                <div> Rua Vergueiro, xxx - Vila Mariana - São Paulo - SP</div>
+            </div>
+            <div class="col-md-6">
+
+            </div>
+
+        </div>
+        <hr />
+        @*TERCEIRA LINHA*@
+        <div class="row">
+            <div class="col-md-10">
+                <h3>ITEM</h3>
+                <div>REST</div>
+            </div>
+            <div class="col-md-2">
+                <h3>Quantidade</h3>
+                <div class="pull-right">
+                    1
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
 
