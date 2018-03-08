@@ -2,15 +2,16 @@
 @{
     ViewData["Title"] = "carrinho";
 }
-
+@model CasaDoCodigo.Models.ViewModels.CarrinhoViewModel
+    
 <h3>Meu Carrinho</h3>
 <div class="panel panel-default">
     <div class="panel-heading">
-        <div class="row">
+        <div class="row row-center">
             <div class="col-md-6">Item</div>
-            <div class="col-md-2">Preço Unitário</div>
-            <div class="col-md-2">Quantidade</div>
-            <div class="col-lg-2">
+            <div class="col-md-2 text-center">Preço Unitário</div>
+            <div class="col-md-2 text-center">Quantidade</div>
+            <div class="col-lg-2 text-center">
                 <span class="pull-right">
                     Subtotal
                 </span>
@@ -18,27 +19,31 @@
         </div>
     </div>
     <div class="panel-body">
-        <div class="row">
-            <div class="col-md-3">
-                <img src="~/images/Produtos/small_4.jpg" />
+        @foreach (var item in Model.Itens)
+        {
+            <div class="row row-center">
+                <div class="col-md-3">
+                    <img src="~/images/Produtos/small_@(item.Id).jpg" />
+                </div>
+                <div class="col-md-3 text-center">@(item.Produto.Nome)</div>
+                <div class="col-md-2 text-center">R$ @(item.Produto.Preco)</div>
+                <div class="col-md-2 text-center">@(item.Quantidade)</div>
+                <div class="col-md-2 text-center">
+                    <span class="pull-right">
+                        R$ @(item.SubTotal)
+                    </span>
+                </div>
             </div>
-            <div class="col-md-3">REST</div>
-            <div class="col-md-2">R$ 70,00</div>
-            <div class="col-md-2">3</div>
-            <div class="col-md-2">
-                <span class="pull-right">
-                    R$ 210,00
-                </span>
-            </div>
-        </div>
+
+        }
     </div>
     <div class="panel-footer">
         <div class="row">
             <div class="col-md-10">
-                <span class="pull-right">Total: 1 itens</span>
+                <span class="pull-right">Total: @Model.Itens.Count() @(Model.Itens.Count() < 2? "Item":"Itens")</span>
             </div>
             <div class="col-md-2">
-                <span class="pull-right">R$ 210,00</span>
+                <span class="pull-right">R$ @(Model.Total)</span>
             </div>
         </div>
     </div>

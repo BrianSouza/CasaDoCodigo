@@ -5,20 +5,46 @@
 
 <h3>Catálogo</h3>
 <div id="my-carousel" class="carousel slide" data-ride="carousel">
-   
+
     <!-- Wrapper for slides -->
     <div class="carousel-inner" role="listbox">
         <div class="item active">
             <div class="row">
-                @*colunas 1*@
+               
+
+                @for (int i = 0; i < 4; i++)
+    {
+            <div class="col-md-3">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <img src="~/images/Produtos/large_@(Model[i].Id).jpg" />
+                    </div>
+                    <div class="panel-footer">
+                        <div>@(Model[i].Nome)</div>
+                        <div>R$ @Model[i].Preco</div>
+                        <div class="text-center">
+                            <a asp-controller="pedido" asp-action="carrinho">Adicionar</a>
+                            @*@Html.ActionLink("Adicionar", "carrinho", "Pedido")*@
+                        </div>
+                    </div>
+                </div>
+            </div>
+}
+
+            </div>
+        </div>
+        <div class="item">
+            <div class="row">
+                @for (int i = 4; i < 8; i++)
+    {
                 <div class="col-md-3">
                     <div class="panel panel-default">
                         <div class="panel-body">
-                            <img src="~/images/Produtos/large_1.jpg" />
+                            <img src="~/images/Produtos/large_@(Model[i].Id).jpg" />
                         </div>
                         <div class="panel-footer">
-                            <div>Camiseta Error 404</div>
-                            <div>R$59,90</div>
+                            <div>@(Model[i].Nome)</div>
+                            <div>R$ @Model[i].Preco</div>
                             <div class="text-center">
                                 <a asp-controller="pedido" asp-action="carrinho">Adicionar</a>
                                 @*@Html.ActionLink("Adicionar", "carrinho", "Pedido")*@
@@ -26,106 +52,7 @@
                         </div>
                     </div>
                 </div>
-                @*coluna 2*@
-                <div class="col-md-3">
-                    <div class="panel panel-default">
-                        <div class="panel-body">
-                            <img src="~/images/Produtos/large_2.jpg" />
-                        </div>
-                        <div class="panel-footer">
-                            <div>Camiseta Error 404</div>
-                            <div>R$59,90</div>
-                            <div class="text-center">
-                                <a asp-controller="pedido" asp-action="carrinho">Adicionar</a>
-
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                @*coluna 3*@
-                <div class="col-md-3">
-                    <div class="panel panel-default">
-                        <div class="panel-body">
-                            <img src="~/images/Produtos/large_3.jpg" />
-                        </div>
-                        <div class="panel-footer">
-                            <div>Camiseta Error 404</div>
-                            <div>R$59,90</div>
-                            <div class="text-center">
-                                <a asp-controller="pedido" asp-action="carrinho">Adicionar</a>
-
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                @*coluna 4*@
-                <div class="col-md-3">
-                    <div class="panel panel-default">
-                        <div class="panel-body">
-                            <img src="~/images/Produtos/large_4.jpg" />
-                        </div>
-                        <div class="panel-footer">
-                            <div>Camiseta Error 404</div>
-                            <div>R$59,90</div>
-                            <div class="text-center">
-                                <a asp-controller="pedido" asp-action="carrinho">Adicionar</a>
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="item">
-            <div class="row">
-                @*colunas 1*@
-                <div class="col-md-3">
-                    <div class="panel panel-default">
-                        <div class="panel-body">
-                            <img src="~/images/Produtos/large_5.jpg" />
-                        </div>
-                        <div class="panel-footer">
-                            <div>Camiseta Error 404</div>
-                            <div>R$59,90</div>
-                            <div class="text-center">
-                                <a asp-controller="pedido" asp-action="carrinho">Adicionar</a>
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                @*coluna 2*@
-                <div class="col-md-3">
-                    <div class="panel panel-default">
-                        <div class="panel-body">
-                            <img src="~/images/Produtos/large_6.jpg" />
-                        </div>
-                        <div class="panel-footer">
-                            <div>Camiseta Error 404</div>
-                            <div>R$59,90</div>
-                            <div class="text-center">
-                                <a asp-controller="pedido" asp-action="carrinho">Adicionar</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                @*coluna 3*@
-                <div class="col-md-3">
-                    <div class="panel panel-default">
-                        <div class="panel-body">
-                            <img src="~/images/Produtos/large_7.jpg" />
-                        </div>
-                        <div class="panel-footer">
-                            <div>Camiseta Error 404</div>
-                            <div>R$59,90</div>
-                            <div class="text-center">
-                                <a asp-controller="pedido" asp-action="carrinho">Adicionar</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+}
             </div>
 
         </div>
