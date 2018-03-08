@@ -17,9 +17,12 @@ namespace CasaDoCodigo.Models
             }
         }
 
-        public ItemPedido(int id,Produto produto,int quantidade)
+        public ItemPedido(int id,Produto produto,int quantidade) : this(produto,quantidade)
         {
             Id = id;
+        }
+        public ItemPedido(Produto produto, int quantidade)
+        {
             Produto = produto;
             Quantidade = quantidade;
             PrecoUnitario = produto.Preco;
