@@ -27,5 +27,9 @@ namespace CasaDoCodigo.Models
             Quantidade = quantidade;
             PrecoUnitario = produto.Preco;
         }
+        public ItemPedido()
+        {
+
+        }
     }
 }

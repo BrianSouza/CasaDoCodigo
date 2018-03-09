@@ -20,5 +20,9 @@ namespace CasaDoCodigo.Models
             Nome = nome;
             Preco = preco;
         }
+        public Produto()
+        {
+
+        }
     }
 }
