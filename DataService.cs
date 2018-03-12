@@ -1,4 +1,5 @@
 ﻿using CasaDoCodigo.Models;
+using CasaDoCodigo.Models.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,6 +13,16 @@ namespace CasaDoCodigo
         public DataService(Contexto contexto)
         {
             this._contexto = contexto;
+        }
+
+        public void AddItemPedido(int produtoId)
+        {
+            var produto = _contexto.Produtos.Where(p => p.Id == produtoId).SingleOrDefault();
+            if (produto == null) return;
+            if (_contexto.ItensPedido.Where(i => i.Produto.Id == produto.Id).Any()) return;
+
+            _contexto.ItensPedido.Add(new ItemPedido(produto, 1));
+            _contexto.SaveChanges();
         }
 
         public List<ItemPedido> GetItensPedido()
@@ -49,6 +60,25 @@ namespace CasaDoCodigo
                 }
                 this._contexto.SaveChanges();
             }
+        }
+
+        public UpdateItemPedidoResponse UpdateItemPedido(ItemPedido itemPedido)
+        {
+            var itemPedidoDb = _contexto.ItensPedido.Where(i => i.Id == itemPedido.Id).SingleOrDefault();
+            if(itemPedidoDb != null)
+            {
+                itemPedidoDb.AtualizaQuantidade(itemPedido.Quantidade);
+                if(itemPedidoDb.Quantidade == 0)
+                {
+                    _contexto.ItensPedido.Remove(itemPedidoDb);
+                }
+                _contexto.SaveChanges();
+            }
+
+            var itensPedido = _contexto.ItensPedido.ToList();
+            var carrinhoViewModel = new CarrinhoViewModel(itensPedido);
+
+            return new UpdateItemPedidoResponse(itemPedidoDb, carrinhoViewModel);
         }
     }
 }

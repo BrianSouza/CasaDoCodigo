@@ -34,7 +34,7 @@
                         <div>@(item.Nome)</div>
                         <div>R$ @item.Preco</div>
                         <div class="text-center">
-                            <a asp-controller="pedido" asp-action="carrinho">Adicionar</a>
+                            <a asp-controller="pedido" asp-action="carrinho" asp-route-produtoId="@(item.Id)">Adicionar</a>
                         </div>
                     </div>
                 </div>

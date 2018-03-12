@@ -1,25 +1,33 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Threading.Tasks;
 
 namespace CasaDoCodigo.Models
 {
-    public class ItemPedido
+    public class ItemPedido : BaseModel
     {
-        public int Id { get; private set; }
+      
+        [DataMember]
         public Produto Produto { get; private set; }
+        [DataMember]
         public int Quantidade { get; private set; }
+        [DataMember]
         public decimal PrecoUnitario { get; private set; }
+        
         public decimal SubTotal { get
             {
                 return Quantidade * PrecoUnitario;
             }
         }
-
+        public void AtualizaQuantidade(int quantidade)
+        {
+            this.Quantidade = quantidade;
+        }
         public ItemPedido(int id,Produto produto,int quantidade) : this(produto,quantidade)
         {
-            Id = id;
+            this.Id = id;
         }
         public ItemPedido(Produto produto, int quantidade)
         {

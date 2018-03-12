@@ -21,8 +21,12 @@ namespace CasaDoCodigo.Controllers
             return View(produtos);
         }
 
-        public IActionResult Carrinho()
+        public IActionResult Carrinho(int? produtoId)
         {
+            if (produtoId.HasValue)
+            {
+                _DataService.AddItemPedido(produtoId.Value);
+            }
             CarrinhoViewModel cVM = GetCarrinhoViewModel();
             return View(cVM);
         }
@@ -39,6 +43,12 @@ namespace CasaDoCodigo.Controllers
             List<ItemPedido> itensCarrinho = this._DataService.GetItensPedido();
             CarrinhoViewModel cVM = new CarrinhoViewModel(itensCarrinho);
             return cVM;
+        }
+
+        [HttpPost]
+        public UpdateItemPedidoResponse PostQuantidade([FromBody]ItemPedido input)
+        {
+            return _DataService.UpdateItemPedido(input);
         }
 
     }
