@@ -11,5 +11,9 @@ namespace CasaDoCodigo
 
         UpdateItemPedidoResponse UpdateItemPedido(ItemPedido itemPedido);
         void AddItemPedido(int produtoId);
+
+        Pedido GetPedido();
+
+        Pedido UpdateCadastro(Pedido cadastro);
     }
 }

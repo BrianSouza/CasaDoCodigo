@@ -6,18 +6,18 @@ using System.Threading.Tasks;
 namespace CasaDoCodigo.Models.ViewModels
 {
     public class CarrinhoViewModel
-    {
+    { 
         public List<ItemPedido> Itens { get; private set; }
         public decimal Total {
             get
             {
-                return Itens.Sum(i => i.SubTotal);
+                return Itens.Sum(i => i.Subtotal);
             }
         }
 
         public CarrinhoViewModel(List<ItemPedido> itens)
         {
-            Itens = itens;
+            this.Itens = itens;
         }
     }
 }

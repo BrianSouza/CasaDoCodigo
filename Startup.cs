@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -22,8 +23,11 @@ namespace CasaDoCodigo
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             string strCnx = Configuration.GetSection("ConnectionsStrings").GetValue<string>("Default");
             services.AddMvc();
+            services.AddDistributedMemoryCache();
+            services.AddSession();
             services.AddDbContext<Contexto>(options => options.UseSqlServer(strCnx));
             services.AddTransient<IDataService, DataService>();
         }
@@ -41,7 +45,7 @@ namespace CasaDoCodigo
             }
 
             app.UseStaticFiles();
-
+            app.UseSession();
             app.UseMvc(routes =>
             {
                 routes.MapRoute(

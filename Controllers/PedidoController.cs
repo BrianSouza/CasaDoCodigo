@@ -30,12 +30,25 @@ namespace CasaDoCodigo.Controllers
             CarrinhoViewModel cVM = GetCarrinhoViewModel();
             return View(cVM);
         }
-
-
-        public IActionResult Resumo()
+        public IActionResult Cadastro()
         {
-            
-            return View(GetCarrinhoViewModel());
+            var pedido = _DataService.GetPedido();
+            if (pedido == null)
+                return RedirectToAction("Carrossel");
+            else
+                return View(pedido);
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Resumo(Pedido cadastro)
+        {
+            if (ModelState.IsValid)
+            {
+                var pedido = _DataService.UpdateCadastro(cadastro);
+                return View(pedido);
+            }
+            else
+                return RedirectToAction("Cadastro");
         }
         private CarrinhoViewModel GetCarrinhoViewModel()
         {
@@ -46,6 +59,7 @@ namespace CasaDoCodigo.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public UpdateItemPedidoResponse PostQuantidade([FromBody]ItemPedido input)
         {
             return _DataService.UpdateItemPedido(input);

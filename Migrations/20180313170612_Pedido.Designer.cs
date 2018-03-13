@@ -11,13 +11,14 @@ using System;
 namespace CasaDoCodigo.Migrations
 {
     [DbContext(typeof(Contexto))]
-    partial class ContextoModelSnapshot : ModelSnapshot
+    [Migration("20180313170612_Pedido")]
+    partial class Pedido
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "2.0.2-rtm-10011")
+                .HasAnnotation("ProductVersion", "2.0.1-rtm-125")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
             modelBuilder.Entity("CasaDoCodigo.Models.ItemPedido", b =>
@@ -25,11 +26,11 @@ namespace CasaDoCodigo.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<int>("PedidoId");
+                    b.Property<int?>("PedidoId");
 
                     b.Property<decimal>("PrecoUnitario");
 
-                    b.Property<int>("ProdutoId");
+                    b.Property<int?>("ProdutoId");
 
                     b.Property<int>("Quantidade");
 
@@ -46,24 +47,6 @@ namespace CasaDoCodigo.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
-
-                    b.Property<string>("Bairro");
-
-                    b.Property<string>("CEP");
-
-                    b.Property<string>("Complemento");
-
-                    b.Property<string>("Email");
-
-                    b.Property<string>("Endereco");
-
-                    b.Property<string>("Municipio");
-
-                    b.Property<string>("Nome");
-
-                    b.Property<string>("Telefone");
-
-                    b.Property<string>("UF");
 
                     b.HasKey("Id");
 
@@ -88,13 +71,11 @@ namespace CasaDoCodigo.Migrations
                 {
                     b.HasOne("CasaDoCodigo.Models.Pedido", "Pedido")
                         .WithMany("Itens")
-                        .HasForeignKey("PedidoId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .HasForeignKey("PedidoId");
 
                     b.HasOne("CasaDoCodigo.Models.Produto", "Produto")
                         .WithMany()
-                        .HasForeignKey("ProdutoId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .HasForeignKey("ProdutoId");
                 });
 #pragma warning restore 612, 618
         }
